@@ -31,4 +31,5 @@ type Status = 'success' | 'error' | 'loading';
 model: string
 year: number
 Додайте метод getCarInfo(), який повертає рядок виду: "Model: Toyota, Year: 2020".
+
 ![Класи](https://github.com/DiPorto/Git-How-To/blob/f08b5e477fc4284475b22783357f0a3527285248/LB1/screenshot/Screenshot_6.png)
