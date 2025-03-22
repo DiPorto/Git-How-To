@@ -3,6 +3,7 @@
 2.	Встановіть усі залежності проєкту, використовуючи команду pnpm install.
 3.	Запустіть початковий скрипт сетапу проєкту (pnpm run setup).
 ![]()
+Рішення:
 ![1](https://github.com/DiPorto/Git-How-To/blob/317481f1a8f7fe4cc1d40483055ddd34fdbb0690/PR2/screenshots/Screenshot_40.png)
 Завдання 2: Аналіз структури файлу package.json
 1.	Опишіть у звіті призначення полів файлу package.json: name, author, description, version, license, repository, scripts, dependencies, devDependencies.
