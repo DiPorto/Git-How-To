@@ -24,6 +24,8 @@ axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`;
 
+![image](https://github.com/user-attachments/assets/fd0d221f-218c-49e5-b790-19a84c3b5ae5)
+
 
 Реалізувати обробку помилок через інтерцептор (наприклад, логування у консоль або показ повідомлення)
 
