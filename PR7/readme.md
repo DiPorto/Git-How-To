@@ -45,7 +45,6 @@ deleteEntity(id) → DELETE /posts/:id
 ![image](https://github.com/user-attachments/assets/1e7fed07-883a-4741-98ac-faf640660e92)
 
 
-![image](https://github.com/user-attachments/assets/7564821f-cf99-4a87-a4fd-8f6db5e5dd6b)
 
 ![image](https://github.com/user-attachments/assets/428ddb46-abbe-4063-bbd1-c64e9a39f984)
 
