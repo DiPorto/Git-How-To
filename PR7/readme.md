@@ -29,6 +29,10 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${import.meta.env.VITE_
 
 Реалізувати обробку помилок через інтерцептор (наприклад, логування у консоль або показ повідомлення)
 
+
+![image](https://github.com/user-attachments/assets/a1f3dd6f-9542-4ba7-82f0-83b092b3a8d7)
+
+
 3. Замінити мок-функції на реальні HTTP-запити:
 У файлі з API-функціями (src/api/posts.ts або аналогічному) замінити реалізацію:
 getAllEntities() → GET /posts
