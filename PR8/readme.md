@@ -4,7 +4,7 @@
 неперервної інтеграції, сформувати навички
 автоматизації CI/CD процесів в GitHub Actions
 
-#~Hello GitHub Actions:~
+# Hello GitHub Actions:
 
 ![Screenshot_125](https://github.com/user-attachments/assets/849e7444-d160-4363-b4c0-6fb03e8ea60d)
 
