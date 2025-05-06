@@ -3,12 +3,11 @@ name: Build and Publish Docker Image
 # 2.1 Тригери:
 on:
   # ручний виклик
-  workflow_dispatch:       # ДОКУМЕНТАЦІЯ: дозволяє запустити вручну через UI чи API
-  # пуш у гілки main та будь-які feature/*
+  workflow_dispatch: 
   push:
     branches:
       - main
-      - 'feature/*'        # ДОКУМЕНТАЦІЯ: спрацьовує на будь-який коміт у feature/…
+      - 'feature/*'
 
 jobs:
   build-and-push:
@@ -31,17 +30,17 @@ jobs:
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
-          registry: ghcr.io            # ДОКУМЕНТАЦІЯ: фіксований registry
+          registry: ghcr.io 
           username: ${{ github.actor }}# ДОКУМЕНТАЦІЯ: ваш логін у GitHub
           password: ${{ secrets.GITHUB_TOKEN }} 
-          # ДОКУМЕНТАЦІЯ: вбудований токен для доступу до ghcr.io
+
 
       # збірка та пуш образу
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: .                   # поточна директорія з Dockerfile
-          push: true                   # включити пуш у registry
+          context: .
+          push: true                  
           tags: |
             ghcr.io/${{ github.repository }}  
             # ДОКУМЕНТАЦІЯ: github.repository == "${{ github.actor }}/<repo-name>"
