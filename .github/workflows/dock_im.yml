@@ -5,8 +5,8 @@ permissions:
   packages: write
 
 on:
-  workflow_dispatch: # ручной запуск
-  push: # запуск при пуше в main или ветки feature/*
+  workflow_dispatch:
+  push:
     branches:
       - main
       - 'feature/*'
@@ -16,42 +16,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонирование репозитория
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: Prepare lowercase variables
+
+      - name: Prepare lowercase vars
         run: |
-          
           ACTOR_LOWER="${GITHUB_ACTOR,,}"
-          
           REPO="${GITHUB_REPOSITORY##*/}"
           REPO_LOWER="${REPO,,}"
-          
           echo "LOWER_ACTOR=$ACTOR_LOWER" >> $GITHUB_ENV
           echo "LOWER_REPO=$REPO_LOWER"   >> $GITHUB_ENV
-          
-      # Установка pnpm, зависимостей и сборка проекта
+
       - name: Install dependencies and build
-        working-directory: PR8 
+        working-directory: PR8
         run: |
           npm install -g pnpm
           pnpm install --frozen-lockfile
           pnpm run build
 
-      # Авторизация в GitHub Container Registry
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ env.LOWER_ACTOR }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Сборка и загрузка Docker-образа в GHCR
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: PR8
+          file: PR8/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ env.LOWER_ACTOR }}/${{ env.LOWER_REPO }}:latest
