@@ -19,7 +19,18 @@ jobs:
       # Клонирование репозитория
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
+      - name: Prepare lowercase variables
+        run: |
+          # actor to lowercase
+          ACTOR_LOWER="${GITHUB_ACTOR,,}"
+          # repository name (after slash) to lowercase
+          REPO="${GITHUB_REPOSITORY##*/}"
+          REPO_LOWER="${REPO,,}"
+          # Экспортим в GITHUB_ENV
+          echo "LOWER_ACTOR=$ACTOR_LOWER" >> $GITHUB_ENV
+          echo "LOWER_REPO=$REPO_LOWER"   >> $GITHUB_ENV
+          
       # Установка pnpm, зависимостей и сборка проекта
       - name: Install dependencies and build
         working-directory: PR8 
@@ -43,4 +54,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.actor }}/${{ github.event.repository.name }}:latest
+            ghcr.io/${{ env.LOWER_ACTOR }}/${{ env.LOWER_REPO }}:latest
