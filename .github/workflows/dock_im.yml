@@ -20,7 +20,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2) Авторизуемся в GitHub Container Registry
+      # 2) Считаем lowercase-версии owner и repo
+      - name: Compute lowercase owner & repo
+        id: lowercase
+        shell: bash
+        run: |
+          # GITHUB_REPOSITORY_OWNER → owner
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          # GITHUB_REPOSITORY → owner/repo, берём часть после '/'
+          repo="${GITHUB_REPOSITORY#*/}"
+          repo="${repo,,}"
+          echo "owner_lower=$owner" >> "$GITHUB_OUTPUT"
+          echo "repo_lower=$repo"   >> "$GITHUB_OUTPUT"
+
+      # 3) Авторизуемся в GitHub Container Registry
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
@@ -28,11 +41,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3) Собираем и пушим Docker-образ
+      # 4) Собираем и пушим Docker-образ
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
+            ghcr.io/${{ steps.lowercase.outputs.owner_lower }}/${{ steps.lowercase.outputs.repo_lower }}:latest
