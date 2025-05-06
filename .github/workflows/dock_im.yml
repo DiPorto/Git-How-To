@@ -22,6 +22,7 @@ jobs:
 
       # Установка pnpm, зависимостей и сборка проекта
       - name: Install dependencies and build
+        working-directory: PR8 
         run: |
           npm install -g pnpm
           pnpm install --frozen-lockfile
