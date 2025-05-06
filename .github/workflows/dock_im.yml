@@ -1,51 +1,42 @@
-name: Build and Publish Docker Image
+name: Create and publish a Docker image
 
-permissions:
-  contents: read
-  packages: write
+on: push
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-      - 'feature/*'
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-push:
+  build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
-      # 1) Клонируем репозиторий
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      # 2) Считаем lowercase-версии owner и repo
-      - name: Compute lowercase owner & repo
-        id: lowercase
-        shell: bash
-        run: |
-          # GITHUB_REPOSITORY_OWNER → owner
-          owner="${GITHUB_REPOSITORY_OWNER,,}"
-          # GITHUB_REPOSITORY → owner/repo, берём часть после '/'
-          repo="${GITHUB_REPOSITORY#*/}"
-          repo="${repo,,}"
-          echo "owner_lower=$owner" >> "$GITHUB_OUTPUT"
-          echo "repo_lower=$repo"   >> "$GITHUB_OUTPUT"
-
-      # 3) Авторизуемся в GitHub Container Registry
-      - name: Log in to GHCR
+      - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 4) Собираем и пушим Docker-образ
+      - name: Metadata Action
+        id: meta
+        uses: docker/metadata-action@5.7.0
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=sha
+
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
           push: true
-          tags: |
-            ghcr.io/${{ steps.lowercase.outputs.owner_lower }}/${{ steps.lowercase.outputs.repo_lower }}:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
