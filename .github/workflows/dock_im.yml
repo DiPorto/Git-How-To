@@ -19,10 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set lowercase repo name
+      - name: Set lowercase owner & repo names
         id: vars
         run: |
           echo "repo_lower=$(echo '${{ github.event.repository.name }}' \
+            | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+          echo "owner_lower=$(echo '${{ github.repository_owner }}' \
             | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
       - name: Log in to GHCR
