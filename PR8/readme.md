@@ -66,3 +66,17 @@
 
 ![Screenshot_143](https://github.com/user-attachments/assets/77fb3294-2fd7-4d2b-b47e-351b217374ed)
 
+
+# Зробив власний GitHub Workflow для збірки докер-образу front-end
+
+![Screenshot_162](https://github.com/user-attachments/assets/824071f1-3301-421d-ba0d-0bbcfd05b032)
+
+![Screenshot_163](https://github.com/user-attachments/assets/4a2ad2e7-728c-44af-943e-67d35006cc2e)
+
+![Screenshot_166](https://github.com/user-attachments/assets/dfd83e59-9c13-45a8-a618-62f2ba878ca7)
+
+![Screenshot_165](https://github.com/user-attachments/assets/9264febc-6876-4121-9993-4a44a702bbcc)
+
+![Screenshot_164](https://github.com/user-attachments/assets/b6557121-bc90-46e8-9e3d-15b55a9aeffa)
+
+
