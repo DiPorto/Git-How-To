@@ -24,13 +24,14 @@ axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 
 axios.defaults.headers.common['Authorization'] = `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`;
 
-![image](https://github.com/user-attachments/assets/fd0d221f-218c-49e5-b790-19a84c3b5ae5)
+![Screenshot_191](https://github.com/user-attachments/assets/99354273-a191-4796-af82-de021b006ebd)
 
 
 Реалізувати обробку помилок через інтерцептор (наприклад, логування у консоль або показ повідомлення)
 
+![Screenshot_192](https://github.com/user-attachments/assets/397516fc-3f0e-421a-9a4a-2b4b4c15bb85)
 
-![image](https://github.com/user-attachments/assets/a1f3dd6f-9542-4ba7-82f0-83b092b3a8d7)
+![Screenshot_193](https://github.com/user-attachments/assets/63489874-13c0-4fc1-be6f-5e8334bc4dc1)
 
 
 3. Замінити мок-функції на реальні HTTP-запити:
@@ -45,9 +46,7 @@ deleteEntity(id) → DELETE /posts/:id
 ![image](https://github.com/user-attachments/assets/1e7fed07-883a-4741-98ac-faf640660e92)
 
 
-
-![image](https://github.com/user-attachments/assets/428ddb46-abbe-4063-bbd1-c64e9a39f984)
-
+![Screenshot_194](https://github.com/user-attachments/assets/c8bcd4ef-f2f5-4863-80a4-8aca62230ce2)
 
 
 
