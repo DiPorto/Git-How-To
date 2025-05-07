@@ -10,7 +10,8 @@
 - створитти міграцію для сутності Post
 - виконати міграцію створену для сутності Post
 
-![Screenshot_80](https://github.com/user-attachments/assets/65340702-c48a-45f8-a7c8-198bc5545ee7)
+![Screenshot_195](https://github.com/user-attachments/assets/d4e6f382-7ab9-4692-819c-bea7737a4f86)
+
 
 - впевнитись у успішному виконанні міграції перевіркою стану БД за допомогою відповідного віджета в IDE
 
